@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>FSRevamp Menu - CSS3</title>
+    
+    <style type="text/css">
+    	/* Frame */
+		.frame {
+			width: 1110px;
+			height: 82px;
+			line-height: 75px;
+			margin: 0 auto;
+			position: relative;
+		}
+		.frame ul {
+			list-style: none;
+			margin: 0;
+			padding: 0;
+			height: 82px;
+			font-size: 50px;
+			position: relative;
+			overflow: hidden;
+			width: 100%;
+		}
+		.frame ul li {
+			position: absolute;
+			width: 182px;
+			height: 75px;
+			color: #ddd;
+			text-align: center;
+			cursor: pointer;
+			box-sizing: border-box;
+			display: block;
+			
+		} 
+		
+		.frame ul li:active { border: 3px solid #FF7F00; }
+		.frame ul li.selected { border: 3px solid #FF7F00; }
+		
+		.green { background-color: #6CBE42; border: 3px solid #6CBE42; }
+		.pink { background-color: #E55679; border: 3px solid #E55679; }
+		.sky { background-color: #57BAE8; border: 3px solid #57BAE8; }
+		.maroon { background-color: #CF4800; border: 3px solid #CF4800; }
+		.navy { background-color: #0070BF; border: 3px solid #0070BF; }
+		.orange { background-color: #FFAA31; border: 3px solid #FFAA31; }
+		
+		.green.active,
+		.pink.active,
+		.sky.active,
+		.maroon.active,
+		.navy.active,
+		.orange.active,
+		.frame ul li:hover{ border: 3px solid #FF7F00; }
+		
+		#next, #prev { position: absolute; top: 0px; background: #e4e4e4; height: 75px; line-height: 75px; padding: 0 5px; color: #333; font-family:Tahoma; font-weight: bold; font-size: 12px; text-decoration: none; outline: none; }
+		#next { right: -21px; }
+		#prev { left: -21px; }
+		#next:active,
+		#prev:active { background: #f4f4f4; }
+    </style>
+    
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/slidemenu.js"></script>
+    <script>
+    	$(function(){			
+			
+			var $listElm =  $('.frame ul li');
+			
+			if( $listElm.length <= 6 ) {
+				$('#next, #prev').hide();
+			} else { 
+				$('#next, #prev').show(); 
+			}
+			
+			loadItems();
+			
+			var $elm = $('.frame ul'),
+				distance = $elm.find('li').width()+11;
+			
+			// Next Button Click Begins
+			$('#next').click(function(e){
+				if (/MSIE (\d+\.\d+);/.test(navigator.userAgent)){ //test for MSIE x.x;
+					var ieversion=new Number(RegExp.$1) // capture x.x portion and store as a number
+				 	if (ieversion<=9) {
+				  		$elm.stop().animate({ scrollLeft: '+=' + distance}, {duration: 500});
+					}
+				 	else {
+						next(e);
+					}
+				} else if(/Opera[\/\s](\d+\.\d+)/.test(navigator.userAgent)){
+					$elm.stop().animate({ scrollLeft: '+=' + distance}, {duration: 500});
+				} else {
+					next(e);
+				} e.preventDefault;
+			}); // next Button Click Ends
+			
+			// Previous Button Click Begins
+			$('#prev').click(function(e){
+				if (/MSIE (\d+\.\d+);/.test(navigator.userAgent)){ //test for MSIE x.x;
+					var ieversion=new Number(RegExp.$1) // capture x.x portion and store as a number
+				 	if (ieversion<=9)
+				  		$elm.stop().animate({ scrollLeft: '-=' + distance}, {duration: 500});
+				 	else {
+						previous(e);
+					}
+				} else if(/Opera[\/\s](\d+\.\d+)/.test(navigator.userAgent)){
+					$elm.stop().animate({ scrollLeft: '-=' + distance}, {duration: 500});
+				} else {
+					previous(e);
+				} e.preventDefault;			
+			}) // Previous Button Click End
+			
+		});
+    </script>
+    
+</head>
+
+<body>
+	
+<div class="frame" id="basic">
+    <ul class="menu" id="a1">
+        <li class="green selected">0</li>
+        <li class="pink">1</li>
+        <li class="sky">2</li>
+        <li class="maroon">3</li>
+        <li class="navy">4</li>
+        <li class="orange">5</li>
+        <li class="green">6</li>
+        <li class="pink">7</li>
+        <li class="sky">8</li>
+        <li class="maroon">9</li>
+        <li class="navy">10</li>
+        <li class="pink">11</li>
+    </ul>
+    <a href="#prev" id="prev">&lt;</a>
+    <a href="#next" id="next">&gt;</a>
+</div>
+    
+</body>
+</html>
