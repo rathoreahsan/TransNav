@@ -1,4 +1,5 @@
 TransNav
 ========
 
-CSS3 Transform Navigation System
+TransNav is a css/jquery (css-transform) based navigation system with next previous arrows.
+
