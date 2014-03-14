@@ -6,9 +6,8 @@
 	Supported Browsers: Internet Explorer 10+, Chrome, Firefox, Safari
 	Fallback Solution for: Below Internet Explorer 9 and Opera
 	Code By: 
-	Sr. UI Developer, 
-	A.K. 
-	Netsolace Inc.  
+	Lead. UI Developer, 
+	A.K.
 
 *//*=======================================================================================================*/
 
